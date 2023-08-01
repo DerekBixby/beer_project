@@ -23,7 +23,8 @@ I hypothesize that lager beers with higher ABV will be rated higher in general.
   * Eliminate columns that are not immediately useful to the project
   * Create new column showing if a beer is a lager or ale
   * fill nulls in ABV column with mode of beer ABV (5%) as this matches overall average beer ABV
-  * split data into train, validate, and test groups for purposes of in-depth exploration, modeling and evaluation
+  * create categorical version of target variable for categorization model
+  * split data into train, validate, and test groups in a 60/20/20 split for purposes of in-depth exploration, modeling and evaluation
 
 * Explore data for variables driving beer quality
   * Answer the following initial questions:
@@ -40,11 +41,12 @@ I hypothesize that lager beers with higher ABV will be rated higher in general.
 
 ## Data Dictionary
 
-There were 13 columns in the initial data and 12 columns after preparation; 1,586,614 rows in the intial data and 1,586,614 after preparation. The target variable is Overall Quality Review: 
+There were 13 columns in the initial data and 11 columns after preparation; 1,586,614 rows in the intial data and 1,586,614 after preparation. The target variable is Overall Quality Review: 
 
 | Feature | Definition |
 |:--------|:-----------|
 |Overall Quality Review| Rating from 1 to 5 of overall beer quality from an individual user on BeerAdvocate.com, target variable|
+|Review Category| Transformation of target variable into 5 categories: 0-1 = 1, 1-2 = 2, etc.|
 |Aroma Review| Rating from 1 to 5 of quality for beer smell|
 |Appearance Review| Rating from 1 to 5 of beer's appearance |
 |Palate Review| Rating from 1 to 5 of how beer feels in one's mouth|
