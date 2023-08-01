@@ -21,7 +21,7 @@ I hypothesize that lager beers with higher ABV will be rated higher in general.
 
 * Prepare data:
   * Eliminate columns that are not immediately useful to the project
-  * Create new column showing if a beer is a lager or ale
+  * Create new, pre-encoded categorical column showing if a beer is a lager or ale
   * fill nulls in ABV column with mode of beer ABV (5%) as this matches overall average beer ABV
   * create categorical version of target variable for categorization model
   * split data into train, validate, and test groups in a 60/20/20 split for purposes of in-depth exploration, modeling and evaluation
@@ -55,3 +55,38 @@ There were 13 columns in the initial data and 11 columns after preparation; 1,58
 |Beer Name| String stating name of beer|
 |Beer ABV| Float displaying percentage of alcohol in beer|
 |Beer ID| Numeric identifier of individual beer|
+
+## Instructions  to Reproduce the Final Project Notebook
+To successfully run/reproduce the final project notebook, please follow these steps:
+1. Read this README.md document to familiarize yourself with the project details and key findings.
+2. Import separate .csv file from data.world BeerADvocate dataset at https://data.world/socialmediadata/beeradvocate
+3. Clone the beer_project repository from GitHub or download the following files: wrangle.py, and final_report.ipynb. 
+4. Run compatible notebook or python environment
+
+-------------------------
+
+## Key Findings
+- White wine is statistically significantly rated higher in quality than red wine by approximately .3 points. 
+- Among features that are statistically significantly related to quality, the most strongly correlated are: density, chlorides, volatile acidity, and alcohol.
+- Alcohol and density are strongly, statistically significantly correlated. Since density is a hydrometer reading from which alcohol percentage is derived, we excluded alcohol as a feature for cluster analysis.
+- Cluster analysis did not provide distinct enough clusters for purposes of using in a regression model 
+
+
+## Conclusion
+This project aimed to develop a machine learning regression model, informed by cluster analysis, to predict wine quality rating for future wines. The analysis showed that white wine is rated higher than red wine. We also discovered that leading variables for driving quality rating were volatile acidity, chlorides, density, and alcohol percentage. However, alcohol percentage is derived from density and these are not independent values. 
+
+
+## Next Steps
+Based on the findings, the following recommendations and next steps are proposed:
+
+1. Conduct DBSCAN cluster analysis: Since this method eliminates outliers, this may prove more useful in defining unique clusters of values
+
+2. Conduct LASSO + LARS regression: Since this model does its' own feature selection, this may provide more predictive utility that we are unable to see through exploration of correlation.
+
+3. Add more variables into the regression model: Since clustering did not prove particularly useful, using more variable combinations in regression may produce additional predictive utility. 
+
+   
+## Recommendations 
+- Separately evaluate white and red wines as white wines are rated higher in quality overall.
+- Vintners should focus most closely on minimizing chlorides (saltiness) and volatile acidity (vinegar flavor).
+- Vintners could also focus on prolonging the fermentation process as long as possible to decrease density (increasing alcohol content).
