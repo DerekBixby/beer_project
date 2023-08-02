@@ -23,6 +23,51 @@ def get_beer():
         
     return df
 
+def find_barley(row):
+    if row['beer_style'] == "Hefeweizen":
+        val = 0
+    elif row['beer_style']  == 'Oatmeal Stout':
+        val = 0
+    elif row['beer_style']  == 'American Adjunct Lager':
+        val = 0
+    elif row['beer_style']  == 'Fruit / Vegetable Beer':
+        val = 0
+    elif row['beer_style']  == 'Weizenbock':
+        val = 0
+    elif row['beer_style']  == 'Rye Beer':
+        val = 0
+    elif row['beer_style']  == 'American Pale Wheat Ale':
+        val = 0
+    elif row['beer_style']  == 'Milk / Sweet Stout':
+        val = 0
+    elif row['beer_style']  == 'Witbier':
+        val = 0
+    elif row['beer_style']  == 'Dunkelweizen':
+        val = 0
+    elif row['beer_style']  == 'Roggenbier':
+        val = 0
+    elif row['beer_style']  == 'Japanese Rice Lager':
+        val = 0
+    elif row['beer_style']  == 'Wheatwine':
+        val = 0
+    elif row['beer_style']  == 'American Dark Wheat Ale':
+        val = 0
+    elif row['beer_style']  == 'Kristalweizen':
+        val = 0
+    elif row['beer_style']  == 'Braggot':
+        val = 0
+    elif row['beer_style']  == 'Berliner Weissbier':
+        val = 0
+    elif row['beer_style']  == 'Kvass':
+        val = 0
+    elif row['beer_style']  == 'Happoshu':
+        val = 0
+    elif row['beer_style']  == 'Sahti':
+        val = 0
+    else:
+        val = 1
+    return val
+
 def find_lager(row):
     if row['beer_style'] == "Hefeweizen":
         val = 0
@@ -220,3 +265,21 @@ def split_data(df, test_size=.2, validate_size=.25, col_to_stratify=None, random
     return train, validate, test
 
 
+def split_data(df, test_size=.2, validate_size=.25, col_to_stratify=None, random_state=7):
+    '''
+    This splits data into test,train and validate data
+    '''
+    # This takes in a default variable or a variable to determine target variable for stratification
+    if col_to_stratify == None:
+    # this splits the data
+        train_validate, test = train_test_split(df, test_size=test_size, random_state=random_state)
+        train, validate = train_test_split(train_validate,
+                                       test_size=validate_size,
+                                       random_state=random_state,)
+    else:                                                        
+        train_validate, test = train_test_split(df, test_size=test_size, random_state=random_state, stratify=df[col_to_stratify])
+        train, validate = train_test_split(train_validate,
+                                       test_size=validate_size,
+                                       random_state=random_state,
+                                       stratify=train_validate[col_to_stratify])
+    return train, validate, test
