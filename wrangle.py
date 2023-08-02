@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import os
-
+from sklearn.model_selection import train_test_split
 
 def get_beer():
     '''
@@ -23,6 +23,7 @@ def get_beer():
         
     return df
 
+#finds beer types that are not barley and codes them as '0', the remainder is coded as '1'
 def find_barley(row):
     if row['beer_style'] == "Hefeweizen":
         val = 0
@@ -68,6 +69,7 @@ def find_barley(row):
         val = 1
     return val
 
+#finds ales and codes them as '0', coding the remainder (lagers) as '1'
 def find_lager(row):
     if row['beer_style'] == "Hefeweizen":
         val = 0
@@ -215,6 +217,7 @@ def find_lager(row):
         val = 1
     return val
 
+#creates categories of beer ratings from 1-5
 def review_categorizer(row):
     if row['review_overall'] <= 1:
         val = 1
@@ -228,24 +231,24 @@ def review_categorizer(row):
         val = 5
     return val
 
+#performs functions to prepare dataset
 def wrangle_beer():
+    #acquires datasets from data.world
     df = get_beer()
-
-    df = find_lager()
-
+    #creates columns for lager, barley, and categories of ratings
     df['is_lager'] = df.apply(find_lager, axis=1)
-
-    mean_value=df['beer_abv'].mode()
-
-    df['beer_abv'].fillna(value=mean_value, inplace=True)
-
+    df['is_barley'] = df.apply(find_barley, axis=1)
+    df['review_cat'] = df.apply(review_categorizer, axis=1)
+    #fills null mode value into ABV column
+    df['beer_abv'].fillna(df['beer_abv'].mode()[0], inplace=True)
+    #drops columns that aren't immediately useful to the project
     df = df.drop(columns=['review_profilename', 'brewery_name', 'brewery_id', 'review_time'], axis=1)
 
-    df['review_cat'] = df.apply(review_categorizer, axis=1)
+   
 
     return df
 
-def split_data(df, test_size=.2, validate_size=.25, col_to_stratify=None, random_state=None):
+def split_data(df, test_size=.2, validate_size=.25, col_to_stratify=None, random_state=7):
     '''
     This splits data into test,train and validate data
     '''
