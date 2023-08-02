@@ -21,7 +21,7 @@ I hypothesize that lager beers with higher ABV will be rated higher in general.
 
 * Prepare data:
   * Eliminate columns that are not immediately useful to the project
-  * Create new, pre-encoded categorical column showing if a beer is a lager or ale
+  * Create new, pre-encoded categorical column showing if a beer is a lager or ale and if beer uses barley or not
   * fill nulls in ABV column with mode of beer ABV (5%) as this matches overall average beer ABV
   * create categorical version of target variable for categorization model
   * split data into train, validate, and test groups in a 60/20/20 split for purposes of in-depth exploration, modeling and evaluation
@@ -41,7 +41,7 @@ I hypothesize that lager beers with higher ABV will be rated higher in general.
 
 ## Data Dictionary
 
-There were 13 columns in the initial data and 11 columns after preparation; 1,586,614 rows in the intial data and 1,586,614 after preparation. The target variable is Overall Quality Review: 
+There were 13 columns in the initial data and 12 columns after preparation; 1,586,614 rows in the intial data and 1,586,614 after preparation. The target variable is Overall Quality Review: 
 
 | Feature | Definition |
 |:--------|:-----------|
@@ -55,6 +55,8 @@ There were 13 columns in the initial data and 11 columns after preparation; 1,58
 |Beer Name| String stating name of beer|
 |Beer ABV| Float displaying percentage of alcohol in beer|
 |Beer ID| Numeric identifier of individual beer|
+|Is Lager| Encoded column stating if a beer is a lager or not, derived from Beer Style column|
+|Is Barley| Encoded column stating if a beer primarily uses barley as a malt (grain) ingeredient or not, derived from Beer Style column|
 
 ## Instructions  to Reproduce the Final Project Notebook
 To successfully run/reproduce the final project notebook, please follow these steps:
