@@ -28,9 +28,11 @@ I hypothesize that lager beers with higher ABV will be rated higher in general.
 
 * Explore data for variables driving beer quality
   * Answer the following initial questions:
+      * Which variables are most highly correlated with overall quality?
       * Is there a difference between quality rating of lagers vs ales?
+      * Is there a difference between quality rating of barley vs non-barley malt beers?
       * How does ABV contribute to perception of beer quality?
-      * Which subratings of beer quality are most highly correlated with overall quality?
+
       
 * Develop a model to predict beer quality
   * Examine variables identified as drivers of quality
@@ -68,27 +70,27 @@ To successfully run/reproduce the final project notebook, please follow these st
 -------------------------
 
 ## Key Findings
-- White wine is statistically significantly rated higher in quality than red wine by approximately .3 points. 
-- Among features that are statistically significantly related to quality, the most strongly correlated are: density, chlorides, volatile acidity, and alcohol.
-- Alcohol and density are strongly, statistically significantly correlated. Since density is a hydrometer reading from which alcohol percentage is derived, we excluded alcohol as a feature for cluster analysis.
-- Cluster analysis did not provide distinct enough clusters for purposes of using in a regression model 
+* Ales are Rated Higher than Lagers on average, this could be due to perceptions of low quality in American Adjunct lagers
+* Traditional barley malt is rated higher than unconventional malts like rye or wheat
+* Subcategories of review are not terribly useful in prediction as they are too closely related to overall ratings
+* However, scent of beer could be a useful predictor due to its relatively low correlation with overall rating and potentially separate process in brewing
+* The final model outperforms baseline by 4-5% and does not seem overfit
+* This model seems best at predicting the 4 category of rating, this being the most common rating
 
 
 ## Conclusion
-This project aimed to develop a machine learning regression model, informed by cluster analysis, to predict wine quality rating for future wines. The analysis showed that white wine is rated higher than red wine. We also discovered that leading variables for driving quality rating were volatile acidity, chlorides, density, and alcohol percentage. However, alcohol percentage is derived from density and these are not independent values. 
+This project set out to identify variables contributing to perception of beer quality for use in choosing a type of beer for distribution. I found that ales and traditional barley beers of higher (6-7%) ABV are rated of higher quality on average. 
 
 
 ## Next Steps
 Based on the findings, the following recommendations and next steps are proposed:
 
-1. Conduct DBSCAN cluster analysis: Since this method eliminates outliers, this may prove more useful in defining unique clusters of values
-
-2. Conduct LASSO + LARS regression: Since this model does its' own feature selection, this may provide more predictive utility that we are unable to see through exploration of correlation.
-
-3. Add more variables into the regression model: Since clustering did not prove particularly useful, using more variable combinations in regression may produce additional predictive utility. 
+1. Conduct linear regression categorization analysis. Trying an additional method may increase performance of the model
+2. Create a more detailed malt category column showing which beers are rye, wheat, etc. 
+3. Add more variables to the dataset. Data on hops used and dry hopping would add valuable information to identify which ingredients are best percieved by consumers.
 
    
 ## Recommendations 
-- Separately evaluate white and red wines as white wines are rated higher in quality overall.
-- Vintners should focus most closely on minimizing chlorides (saltiness) and volatile acidity (vinegar flavor).
-- Vintners could also focus on prolonging the fermentation process as long as possible to decrease density (increasing alcohol content).
+* For a broadly appealing beer, focus first on long fermentation, this will smooth out the beer and increase ABV
+* Ales are a good bet for an overall more appealing beer
+* Stick to traditional malts to increase sales
